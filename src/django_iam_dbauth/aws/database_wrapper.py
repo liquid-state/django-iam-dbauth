@@ -9,7 +9,8 @@ def get_aws_connection_params(params):
     enabled = params.pop("use_iam_auth", None)
     if enabled:
         region_name = params.pop("region_name", None)
-        rds_client = boto3.client(service_name="rds", region_name=region_name)
+        session = boto3.session.Session()
+        rds_client = session.client(service_name="rds", region_name=region_name)
 
         hostname = params.get("host")
         if hostname:
@@ -25,6 +26,8 @@ def get_aws_connection_params(params):
             DBHostname=hostname,
             Port=params.get("port", 5432),
             DBUsername=params.get("user") or getpass.getuser(),
+            Region=params.get("region_name")
         )
+        print(f'Requested RDS Auth Token: host={params.get("hostname")} port={params.get("port")} dbuser={params.get("user")} region={params.get("region_name")}')
 
     return params
