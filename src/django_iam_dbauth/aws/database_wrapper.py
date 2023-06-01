@@ -9,7 +9,7 @@ def get_aws_connection_params(params, region=environ.get('AWS_REGION')):
     if enabled:
         region_name = params.pop("region_name", None)
         session = boto3.session.Session()
-        rds_client = session.client(service_name="rds", region_name=region_name)
+        rds_client = session.client(service_name="rds", region_name=region)
 
         hostname = params.get("host")
         if hostname:
