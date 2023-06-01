@@ -4,7 +4,7 @@ from os import environ
 from django_iam_dbauth.utils import resolve_cname
 
 
-def get_aws_connection_params(params, region=environ.get('AWS_REGION')):
+def get_aws_connection_params(params):
     enabled = params.pop("use_iam_auth", None)
     if enabled:
         region_name = params.pop("region_name", None)
@@ -25,8 +25,7 @@ def get_aws_connection_params(params, region=environ.get('AWS_REGION')):
             DBHostname=hostname,
             Port=params.get("port", 5432),
             DBUsername=params.get("user") or getpass.getuser(),
-            Region=region
+            Region=region_name
         )
-        print(f'Requested RDS Auth Token: host={hostname} port={params.get("port")} dbuser={params.get("user")} region={region}')
 
     return params
