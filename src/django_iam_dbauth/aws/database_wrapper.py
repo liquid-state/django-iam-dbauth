@@ -1,6 +1,6 @@
 import getpass
 import boto3
-from os import environ
+
 from django_iam_dbauth.utils import resolve_cname
 
 
