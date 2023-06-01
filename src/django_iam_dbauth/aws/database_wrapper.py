@@ -1,11 +1,10 @@
 import getpass
-
 import boto3
-
+from os import environ
 from django_iam_dbauth.utils import resolve_cname
 
 
-def get_aws_connection_params(params, region=os.environ.get('AWS_REGION')):
+def get_aws_connection_params(params, region=environ.get('AWS_REGION')):
     enabled = params.pop("use_iam_auth", None)
     if enabled:
         region_name = params.pop("region_name", None)
