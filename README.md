@@ -26,6 +26,7 @@ DATABASES = {
             "use_iam_auth": True,
             "sslmode": "require",   # See discussion on SSL below
             "resolve_cname_enabled": True,
+            "region_name": "ap-southeast-2" # AWS Region
         }
     }
 }
