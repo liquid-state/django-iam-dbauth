@@ -8,7 +8,6 @@ def get_aws_connection_params(params):
     enabled = params.pop("use_iam_auth", None)
     region = params.pop("region_name", "us-west-2")
     if enabled:
-        region_name = params.pop("region_name", None)
         session = boto3.session.Session()
         rds_client = session.client(service_name="rds", region_name=region)
 
